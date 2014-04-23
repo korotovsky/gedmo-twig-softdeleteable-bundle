@@ -74,7 +74,7 @@ class TwigSoftdeleteableExtension extends \Twig_Extension
         if (!$this->entityManager->getFilters()->isEnabled('softdeleteable')) {
             if ($class !== null) {
                 // Nested tags case.
-                // {% softdeleteable 'FQCN' %} incide {% softdeleteable %}
+                // {% softdeleteable 'FQCN' %} inside {% softdeleteable %}
                 // So, just pop classes stack
                 $this->classStack->pop();
             } else {
