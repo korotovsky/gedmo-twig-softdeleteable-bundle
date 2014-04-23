@@ -3,5 +3,8 @@ parameters:
     krtv.twig.gedmo_softdeleteable.entity_manager: doctrine.orm.entity_manager
 
 services:
-# That service defined in EntityManagerPass
-#    krtv.twig.gedmo_softdeleteable:
+    krtv.twig.gedmo_softdeleteable:
+      class: %krtv.twig.gedmo_softdeleteable.class%
+      arguments: ~ # Passed in compiler
+      tags:
+        - { name: twig.extension }

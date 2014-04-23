@@ -6,31 +6,41 @@ namespace Krtv\Bundle\TwigSoftdeleteableBundle\Twig\Node;
 /**
  * Represents a softdeleteable node.
  *
- * @author Wouter J <wouter@wouterj.nl>
+ * @author Dmitry Korotovsky <dmitry@korotovsky.io>
  */
 class TwigSoftdeleteableNode extends \Twig_Node
 {
-    public function __construct(\Twig_NodeInterface $name, $body, \Twig_Node_Expression_AssignName $var, $lineno = 0, $tag = null)
+    public function __construct($className = null, $body, \Twig_Node_Expression_AssignName $var, $lineno = 0, $tag = null)
     {
-        parent::__construct(array('body' => $body, 'name' => $name, 'var' => $var), array(), $lineno, $tag);
+        parent::__construct(array('body' => $body, 'var' => $var), array('className' => $className), $lineno, $tag);
     }
 
     public function compile(\Twig_Compiler $compiler)
     {
-        $compiler
-            ->addDebugInfo($this)
-            ->write('')
-            ->subcompile($this->getNode('var'))
-            ->raw(' = ')
-            ->subcompile($this->getNode('name'))
-            ->write(";\n")
-            ->write("\$this->env->getExtension('krtv.twig_softdeleteable')->disable(")
-            ->subcompile($this->getNode('var'))
-            ->raw(", 'template');\n")
-            ->subcompile($this->getNode('body'))
-            ->write("\$this->env->getExtension('krtv.twig_softdeleteable')->enable(")
-            ->subcompile($this->getNode('var'))
-            ->raw(");\n")
-        ;
+        $className = $this->getAttribute('className');
+
+        $compiler->addDebugInfo($this)
+            ->write('');
+
+        // Compile disable
+        $compiler->write("\$this->env->getExtension('krtv.twig_softdeleteable')->disable(");
+        if ($className !== null) {
+            $compiler->raw("'");
+            $compiler->raw($className);
+            $compiler->raw("'");
+        }
+        $compiler->raw(");\n");
+
+        // Compile body
+        $compiler->subcompile($this->getNode('body'));
+
+        // Compile enable back
+        $compiler->write("\$this->env->getExtension('krtv.twig_softdeleteable')->enable(");
+        if ($className !== null) {
+            $compiler->raw("'");
+            $compiler->raw($className);
+            $compiler->raw("'");
+        }
+        $compiler->raw(");\n");
     }
 }

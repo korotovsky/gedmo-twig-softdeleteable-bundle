@@ -13,11 +13,5 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class KrtvTwigSoftdeleteableBundle extends Bundle
 {
-    /**
-     * @param ContainerBuilder $container
-     */
-    public function build(ContainerBuilder $container)
-    {
-        $container->addCompilerPass(new TwigExtensionPass());
-    }
+
 }

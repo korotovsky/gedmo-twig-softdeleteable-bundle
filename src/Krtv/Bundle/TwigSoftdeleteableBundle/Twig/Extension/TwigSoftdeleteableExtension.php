@@ -25,16 +25,29 @@ class TwigSoftdeleteableExtension extends \Twig_Extension
         $this->entityManager = $entityManager;
     }
 
+    /**
+     * @param null $class
+     * @return bool
+     */
     public function disable($class = null)
     {
+        return true;
         // Disable soft deleteable
     }
 
+    /**
+     * @param null $class
+     * @return bool
+     */
     public function enable($class = null)
     {
+        return true;
         // Disable soft deleteable
     }
 
+    /**
+     * @return array
+     */
     public function getTokenParsers()
     {
         return array(
@@ -47,6 +60,9 @@ class TwigSoftdeleteableExtension extends \Twig_Extension
         );
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'krtv.twig_softdeleteable';
