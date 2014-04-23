@@ -1,0 +1,2 @@
+gedmo-twig-softdeleteable-bundle
+================================
