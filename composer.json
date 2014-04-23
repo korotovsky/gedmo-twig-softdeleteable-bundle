@@ -1,0 +1,21 @@
+{
+    "name": "korotovsky/gedmo-twig-softdeleteable-bundle",
+    "type": "symfony-bundle",
+    "description": "Twig tag for disable Gedmo softdeleteable behavior in twig templates",
+    "keywords": ["gedmo", "twig", "doctrine", "softdeleteable"],
+    "homepage": "http://korotovsky.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Korotovsky",
+            "email": "dmitry@korotovsky.io"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "symfony/symfony": "2.4.*"
+    },
+    "autoload": {
+        "psr-0": { "Krtv\\Bundle\\TwigSoftdeleteableBundle": "src/" }
+    }
+}

@@ -1,0 +1,7 @@
+parameters:
+    krtv.twig.gedmo_softdeleteable.class: Krtv\Bundle\TwigSoftdeleteableBundle\Twig\Extension\TwigSoftdeleteableExtension
+    krtv.twig.gedmo_softdeleteable.entity_manager: doctrine.orm.entity_manager
+
+services:
+# That service defined in EntityManagerPass
+#    krtv.twig.gedmo_softdeleteable:
